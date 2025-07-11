@@ -1,0 +1,99 @@
+---
+import '../styles/global.css';
+
+interface Props {
+	title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content="Professional Portfolio" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+	</head>
+	<body class="bg-gray-50 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
+<nav class="fixed w-full z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm border-b border-gray-200 dark:border-gray-700">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+	<div class="flex items-center justify-between h-16">
+	  <a href="#" class="text-lg font-semibold">Portfolio</a>
+	  <div class="flex items-center space-x-4">
+		<div class="hidden md:block">
+		  <div class="flex items-center space-x-8">
+			<a href="#home" class="hover:text-blue-600 dark:hover:text-blue-400">Home</a>
+			<a href="#about" class="hover:text-blue-600 dark:hover:text-blue-400">About</a>
+			<a href="#projects" class="hover:text-blue-600 dark:hover:text-blue-400">Projects</a>
+			<a href="#contact" class="hover:text-blue-600 dark:hover:text-blue-400">Contact</a>
+		  </div>
+		</div>
+		<!-- Theme Toggle Button -->
+		<button
+		  id="theme-toggle"
+		  type="button"
+		  class="ml-4 p-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+		  aria-label="Toggle dark mode"
+		>
+		  <svg id="theme-toggle-light-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M10 3.25a.75.75 0 01.75.75v1a.75.75 0 01-1.5 0v-1A.75.75 0 0110 3.25zm0 10a2.75 2.75 0 100-5.5 2.75 2.75 0 000 5.5zm6.75-2.75a.75.75 0 01.75.75v.01a.75.75 0 01-1.5 0v-.01a.75.75 0 01.75-.75zm-13.5 0a.75.75 0 01.75.75v.01a.75.75 0 01-1.5 0v-.01a.75.75 0 01.75-.75zm10.61-5.36a.75.75 0 011.06 1.06l-.71.7a.75.75 0 11-1.06-1.06l.71-.7zm-8.48 8.48a.75.75 0 011.06 0l.7.71a.75.75 0 11-1.06 1.06l-.7-.71a.75.75 0 010-1.06zm8.48 8.48a.75.75 0 010-1.06l.71-.7a.75.75 0 111.06 1.06l-.71.7a.75.75 0 01-1.06 0zm-8.48-8.48a.75.75 0 010-1.06l.7-.71a.75.75 0 111.06 1.06l-.7.71a.75.75 0 01-1.06 0z"></path></svg>
+		  <svg id="theme-toggle-dark-icon" class="w-5 h-5 hidden" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+		</button>
+	  </div>
+	</div>
+  </div>
+</nav>
+		<slot />
+		<footer class="bg-white dark:bg-gray-900 border-t border-gray-200 dark:border-gray-700 py-8">
+			<div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+				<p class="text-center text-gray-500 dark:text-gray-400">
+					© {new Date().getFullYear()} Portfolio. All rights reserved.
+				</p>
+			</div>
+		</footer>
+</body>
+<script>
+  // Theme toggle logic with null checks
+  const themeToggleBtn = document.getElementById('theme-toggle');
+  const lightIcon = document.getElementById('theme-toggle-light-icon');
+  const darkIcon = document.getElementById('theme-toggle-dark-icon');
+
+  function setThemeIcon() {
+	if (!lightIcon || !darkIcon) return;
+	if (document.documentElement.classList.contains('dark')) {
+	  darkIcon.classList.add('hidden');
+	  lightIcon.classList.remove('hidden');
+	} else {
+	  lightIcon.classList.add('hidden');
+	  darkIcon.classList.remove('hidden');
+	}
+  }
+
+  function setInitialTheme() {
+	const userTheme = localStorage.getItem('theme');
+	if (userTheme === 'dark' || (!userTheme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+	  document.documentElement.classList.add('dark');
+	} else {
+	  document.documentElement.classList.remove('dark');
+	}
+	setThemeIcon();
+  }
+
+  setInitialTheme();
+
+  if (themeToggleBtn) {
+	themeToggleBtn.addEventListener('click', () => {
+	  document.documentElement.classList.toggle('dark');
+	  if (document.documentElement.classList.contains('dark')) {
+		localStorage.setItem('theme', 'dark');
+	  } else {
+		localStorage.setItem('theme', 'light');
+	  }
+	  setThemeIcon();
+	});
+  }
+</script>
+</html>
