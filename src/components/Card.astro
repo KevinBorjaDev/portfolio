@@ -13,13 +13,13 @@ interface Props {
 const { title, description, status, image, link, technologies } = Astro.props;
 ---
 
-<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden ">
+<div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg flex flex-col">
   {
     image ? <img src={image} alt={title} class="w-full h-48 object-cover" /> :
     <img src="https://placehold.co/200x100" alt="placeholder-image" class="w-full h-48 object-cover"/>
   }
   
-  <div class="p-6">
+  <div class="px-6 pt-6 flex flex-col flex-grow">
     <div class="flex gap-4 items-start">
       <h3 class="text-xl font-semibold mb-2 text-sky-700">{title}</h3>
       {
@@ -34,19 +34,19 @@ const { title, description, status, image, link, technologies } = Astro.props;
         <Chip tech={tech} />
       ))}
     </div>
-    <div class="flex justify-end">
-      {link && (
-        <a
-          href={link}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="px-4 py-2 rounded-lg text-gray-500 hover:text-sky-700 transition-colors flex font-bold"
-        >
-          <span class="text-sm">Ver Repositorio</span>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="48" stroke-dashoffset="48" d="M11 5h-6v14h14v-6"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="48;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M13 11l7 -7"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="12;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M21 3h-6M21 3v6"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="8;0"/></path></g></svg>
-        </a>
-      )}
+  </div>
+  <div class="flex justify-end pb-6 pr-6 mt-auto">
+    {link && (
+      <a
+        href={link}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="px-4 py-2 rounded-lg text-gray-500 hover:text-sky-700 transition-colors flex font-bold"
+      >
+        <span class="text-sm">Ver Repositorio</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path stroke-dasharray="48" stroke-dashoffset="48" d="M11 5h-6v14h14v-6"><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.6s" values="48;0"/></path><path stroke-dasharray="12" stroke-dashoffset="12" d="M13 11l7 -7"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.6s" dur="0.2s" values="12;0"/></path><path stroke-dasharray="8" stroke-dashoffset="8" d="M21 3h-6M21 3v6"><animate fill="freeze" attributeName="stroke-dashoffset" begin="0.8s" dur="0.2s" values="8;0"/></path></g></svg>
+      </a>
+    )}
 
-    </div>
   </div>
 </div>

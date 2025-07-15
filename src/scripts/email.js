@@ -1,6 +1,8 @@
 import emailjs from "@emailjs/browser";
+import { showError, showSuccess } from "./toast";
+
 document.addEventListener("DOMContentLoaded", () => {
-  emailjs.init({ publicKey: "XtsHSzp-McZUH5zqS" });
+  emailjs.init({ publicKey: import.meta.env.PUBLIC_EMAIL_KEY });
   const form = document.getElementById("contact-form");
   const name = document.getElementById('name')
   const email = document.getElementById('email')
@@ -14,21 +16,20 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.disabled = true;
       submitButton.classList.add('disable-button');
       emailjs
-        .send("portofolio_k7p4zrl", "template_akpteej", {
+        .send(import.meta.env.PUBLIC_SERVICE_ID, import.meta.env.PUBLIC_TEMPLATE_ID, {
           name: name.value, 
           email: email.value, 
           message: message.value
         })
         .then(() => {
           console.log("success");
-          alert("¡Correo enviado!");
-          // e.target.reset();
+          showSuccess('Mensaje enviado!')
           submitButton.disabled = false;
           submitButton.classList.remove('disable-button');
         })
         .catch((error) => {
           console.error(error);
-          alert("Hubo un error al enviar el correo.");
+          showError('Hubo un error al enviar el correo, prueba nuevamente en unos minutos!')
           submitButton.disabled = false;
           submitButton.classList.remove('disable-button');
         });
