@@ -56,7 +56,8 @@ import { experience, projects } from "../constants/global";
 		>
 			<div class="flex flex-col gap-2">
 				<label>Tu nombre</label>
-				<input id=name
+				<input
+					id="name"
 					type="text"
 					name="name"
 					required
@@ -65,7 +66,8 @@ import { experience, projects } from "../constants/global";
 			</div>
 			<div class="flex flex-col gap-2">
 				<label>Tu correo</label>
-				<input id=email
+				<input
+					id="email"
 					type="email"
 					name="email"
 					required
@@ -74,13 +76,14 @@ import { experience, projects } from "../constants/global";
 			</div>
 			<div class="flex flex-col gap-2">
 				<label>Mensaje</label>
-				<textarea id="message"
+				<textarea
+					id="message"
 					name="message"
 					required
 					class="border-gray-400 outline-sky-600 border-2 rounded-md p-2 h-40"
 				></textarea>
 			</div>
-			<button
+			<button id="submit-button"
 				type="submit"
 				class="rounded-md bg-slate-600 text-white p-2 hover:bg-slate-500"
 				>Enviar</button
@@ -89,31 +92,4 @@ import { experience, projects } from "../constants/global";
 	</Section>
 </Layout>
 
-<script type="module">
-	import emailjs from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
-
-	emailjs.init({ publicKey: "XtsHSzp-McZUH5zqS" });
-
-	const name = document.getElementById('#name').nodeValue
-	const email = document.getElementById('#email').nodeValue
-	const message = document.getElementById('#message').nodeValue
-
-	document.getElementById("contact-form").addEventListener("submit", (e) => {
-		e.preventDefault();
-		emailjs
-			.send("portofolio_k7p4zrl", "template_akpteej", {
-				name,
-				message,
-				email,
-			})
-			.then(() => {
-				console.log('success');
-				alert("¡Correo enviado!");
-				e.target.reset();
-			})
-			.catch((error) => {
-				console.error(error);
-				alert("Hubo un error al enviar el correo.");
-			});
-	});
-</script>
+<script type="module" src="../src/scripts/email.js"></script>

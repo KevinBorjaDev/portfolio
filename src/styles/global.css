@@ -24,3 +24,8 @@ html, body {
 summary::marker {
   color: gray;
 }
+
+.disable-button {
+  cursor: not-allowed;
+  background-color: rgb(186, 186, 186);
+}
