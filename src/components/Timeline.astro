@@ -1,0 +1,21 @@
+---
+import TimelineItem from './TimelineItem.astro';
+
+interface Props {
+  experience: {
+    id: number;
+    date: string;
+    position: string;
+    details: string;
+    technologies: string[];
+  }[];
+}
+
+const { experience } = Astro.props;
+---
+
+<div class="pl-2 pr-2 min-h-[60vh] max-h-[60vh] overflow-y-auto min-w-[40vw] max-w-[40vw]">
+  <ol class="relative border-s border-gray-200 dark:border-gray-700  " >
+    { experience.map((e) => <TimelineItem {...e} /> )}
+  </ol>
+</div>

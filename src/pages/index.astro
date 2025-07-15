@@ -1,16 +1,119 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Section from "../components/Section.astro";
+import Card from "../components/Card.astro";
+import Timeline from "../components/Timeline.astro";
+import { experience, projects } from "../constants/global";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout>
+	<section
+		id="home"
+		class="py-14 min-h-screen flex items-center w-full p-16 gap-[12vw] justify-center scroll-item"
+	>
+		<img src="https://placehold.co/400x600" />
+		<div class="basis-[25vw] flex flex-col gap-8">
+			<h1 class="text-6xl font-bold">Bienvenido a mi portafolio</h1>
+			<p class="text-lg text-slate-600 font-medium">
+				Soy Kevin Borja, desarrollador full stack con 5 años de experiencia en
+				el desarrollo de sistemas web. Apasionado por la tecnología desde que
+				tengo memoria, con capacidad para adaptarme a cualquier tecnología
+				entregando software de calidad y escalable.
+			</p>
+		</div>
+	</section>
+	<!-- OTRAS SECCIONES -->
+	<Section
+		id="experience"
+		classNames="min-h-screen"
+		title="Experiencia Laboral"
+		description="Conoce más sobre mi experiencia laboral"
+	>
+		<div class="w-full flex justify-center">
+			<Timeline experience={experience} />
+		</div>
+	</Section>
+	<Section
+		id="projects"
+		classNames="min-h-screen"
+		title="Proyectos"
+		description="Proyectos en los que he trabajado de forma freelance"
+	>
+		<div class="mt-12 grid grid-cols-2 gap-8 justify-items-center">
+			{projects.map((project) => <Card {...project} />)}
+		</div>
+	</Section>
+	<Section
+		id="contact"
+		classNames="min-h-screen"
+		title="Ponte en contacto"
+		description="Si deseas más información o trabajar conmigo, envíame un mensaje"
+	>
+		<form
+			id="contact-form"
+			method="POST"
+			class="flex flex-col gap-4 max-w-[30vw] mx-auto min-w-[30vw]"
+		>
+			<div class="flex flex-col gap-2">
+				<label>Tu nombre</label>
+				<input id=name
+					type="text"
+					name="name"
+					required
+					class="border-gray-400 outline-sky-600 border-2 rounded-md p-2 h-12"
+				/>
+			</div>
+			<div class="flex flex-col gap-2">
+				<label>Tu correo</label>
+				<input id=email
+					type="email"
+					name="email"
+					required
+					class="border-gray-400 outline-sky-600 border-2 rounded-md p-2 h-12"
+				/>
+			</div>
+			<div class="flex flex-col gap-2">
+				<label>Mensaje</label>
+				<textarea id="message"
+					name="message"
+					required
+					class="border-gray-400 outline-sky-600 border-2 rounded-md p-2 h-40"
+				></textarea>
+			</div>
+			<button
+				type="submit"
+				class="rounded-md bg-slate-600 text-white p-2 hover:bg-slate-500"
+				>Enviar</button
+			>
+		</form>
+	</Section>
+</Layout>
+
+<script type="module">
+	import emailjs from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+
+	emailjs.init({ publicKey: "XtsHSzp-McZUH5zqS" });
+
+	const name = document.getElementById('#name').nodeValue
+	const email = document.getElementById('#email').nodeValue
+	const message = document.getElementById('#message').nodeValue
+
+	document.getElementById("contact-form").addEventListener("submit", (e) => {
+		e.preventDefault();
+		emailjs
+			.send("portofolio_k7p4zrl", "template_akpteej", {
+				name,
+				message,
+				email,
+			})
+			.then(() => {
+				console.log('success');
+				alert("¡Correo enviado!");
+				e.target.reset();
+			})
+			.catch((error) => {
+				console.error(error);
+				alert("Hubo un error al enviar el correo.");
+			});
+	});
+</script>

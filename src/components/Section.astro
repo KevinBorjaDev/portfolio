@@ -1,0 +1,22 @@
+---
+
+interface Props {
+  id?: string;
+  title?: string;
+  description?: string;
+  classNames?: string;
+}
+
+const { title, description, classNames, ...others } = Astro.props;
+---
+
+<section class="p-14 scroll-item" class:list={classNames} {...others}>
+  <div class="flex flex-col gap-16">
+    <div class="flex flex-col gap-4 text-center">
+      <h1 class="text-6xl font-bold">{ title }</h1>
+      <p class="italic">{ description } </p>
+    </div>
+    <slot/>
+
+  </div>
+</section>
