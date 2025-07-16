@@ -1,4 +1,3 @@
-import emailjs from "@emailjs/browser";
 import { showError, showSuccess } from "./toast";
 
 document.addEventListener("DOMContentLoaded", () => {

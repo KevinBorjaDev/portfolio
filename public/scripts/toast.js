@@ -1,6 +1,3 @@
-import Toastify from "toastify-js";
-import "toastify-js/src/toastify.css";
-
 export function showSuccess(message, duration = 3000) {
   Toastify({
     text: message,
