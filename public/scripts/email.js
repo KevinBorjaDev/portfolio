@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-  emailjs.init({ publicKey: import.meta.env.PUBLIC_EMAIL_KEY });
+  emailjs.init("XtsHSzp-McZUH5zqS");
   const form = document.getElementById("contact-form");
   const name = document.getElementById('name')
   const email = document.getElementById('email')
@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
       submitButton.disabled = true;
       submitButton.classList.add('disable-button');
       emailjs
-        .send(import.meta.env.PUBLIC_SERVICE_ID, import.meta.env.PUBLIC_TEMPLATE_ID, {
+        .send("portofolio_k7p4zrl", "template_akpteej", {
           name: name.value, 
           email: email.value, 
           message: message.value
