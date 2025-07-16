@@ -1,4 +1,3 @@
-import { showError, showSuccess } from "./toast";
 
 document.addEventListener("DOMContentLoaded", () => {
   emailjs.init({ publicKey: import.meta.env.PUBLIC_EMAIL_KEY });
