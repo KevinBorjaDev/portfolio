@@ -15,9 +15,9 @@ permissions:
   id-token: write
 
 env:
-  PUBLIC_SERVICE_ID = portofolio_k7p4zrl
-  PUBLIC_TEMPLATE_ID = template_akpteej
-  PUBLIC_EMAIL_KEY = XtsHSzp-McZUH5zqS
+  PUBLIC_SERVICE_ID: portofolio_k7p4zrl
+  PUBLIC_TEMPLATE_ID: template_akpteej
+  PUBLIC_EMAIL_KEY: XtsHSzp-McZUH5zqS
 
 jobs:
   build:
