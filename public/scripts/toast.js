@@ -1,4 +1,4 @@
-export function showSuccess(message, duration = 3000) {
+window.showSuccess = function (message, duration = 3000) {
   Toastify({
     text: message,
     duration: duration,
@@ -10,7 +10,7 @@ export function showSuccess(message, duration = 3000) {
   }).showToast();
 }
 
-export function showError(message, duration = 3000) {
+window.showError = function (message, duration = 3000) {
   Toastify({
     text: message,
     duration: duration,

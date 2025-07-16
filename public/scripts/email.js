@@ -22,13 +22,13 @@ document.addEventListener("DOMContentLoaded", () => {
         })
         .then(() => {
           console.log("success");
-          showSuccess('Mensaje enviado!')
+          window.showSuccess('Mensaje enviado!')
           submitButton.disabled = false;
           submitButton.classList.remove('disable-button');
         })
         .catch((error) => {
           console.error(error);
-          showError('Hubo un error al enviar el correo, prueba nuevamente en unos minutos!')
+          window.showError('Hubo un error al enviar el correo, prueba nuevamente en unos minutos!')
           submitButton.disabled = false;
           submitButton.classList.remove('disable-button');
         });
